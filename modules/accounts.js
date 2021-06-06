@@ -70,8 +70,8 @@ class Accounts {
 		// default password is "p455w0rd"
 		const defaultPassword = '$2b$10$gL33obKAFUT5DK3pEbh72OIHztsWBniBBh.PdeKOrF1yr5KFAsdZO'
 		const records = [
-			`INSERT INTO users(user, pass, email) VALUES("bloggsj", "${defaultPassword}", "bloggs@gmail.com")`,
-			`INSERT INTO users(user, pass, email) VALUES("doej", "${defaultPassword}", "doej@gmail.com")`
+			`INSERT INTO users(user, pass, email) VALUES("admin", "${defaultPassword}", "admin@gmail.com")`,
+			`INSERT INTO users(user, pass, email) VALUES("test1", "${defaultPassword}", "test1@gmail.com")`
 		]
 		records.forEach( async sql => await this.db.run(sql))
 	}

@@ -1,0 +1,14 @@
+name: website 
+on:
+  push:
+    branches: ['*']
+    
+jobs:
+    job1:
+        name : First
+        runs-on: ubuntu-latest
+        steps:
+            - name : Phase 1 
+              uses : actions/checkout@v2
+            - run : env  
+           

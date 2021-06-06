@@ -20,6 +20,27 @@ aside {
 	position: fixed;
 	top: 2em;
 }
+details {
+    border: 2px solid #aaa;
+    border-radius: 5px;
+    padding: .3em .3em 0;
+}
+
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+
+details[open] {
+    padding: .3em;
+}
+
+details[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: .3em;
+}
+
 
 header {
 	background-color: #ccc;
@@ -30,7 +51,7 @@ header {
 h1, h2, h3 {
 	margin: 0;
 	padding: 0;
-	color: #444;
+	color: #000000;
 }
 
 h1 {
@@ -41,13 +62,13 @@ h1 {
 }
 
 h2 {
-	font-size: 2.5vw;
+	font-size: 1.5vw;
 	margin: 1vw;
 	margin-left: 0.6vw;
 }
 
 h3 {
-	font-size: 2vw;
+	font-size: 1vw;
 	margin: 1vw;
 	margin-left: 0.6vw;
 }

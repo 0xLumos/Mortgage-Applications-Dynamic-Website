@@ -2,8 +2,41 @@
 body {
 		font-family: Arial, Helvetica, sans-serif;
 		margin: 0;
+        background-image: url("background.jpg");
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
 	}
+.slidecontainer {
+  width: 100%;
+}
+.sliderval {
+    text-align: center;
+    border: 2px solid #4285F4 ;
+    border-radius : 50px 20px;
+}
 
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4285F4;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4285F4;
+  cursor: pointer;
+}
 /* formats the red message boxes */
 aside {
 	max-width: 500px;
@@ -43,15 +76,15 @@ details[open] summary {
 
 
 header {
-	background-color: #ccc;
-	border-bottom: 5px solid grey;
+	background-color: #4285F4;
+	border-bottom: 5px solid #FFF1E2;
 	height: 8vw;
 }
 
 h1, h2, h3 {
 	margin: 0;
 	padding: 0;
-	color: #000000;
+	color: #FFF1E2;
 }
 
 h1 {
@@ -72,7 +105,16 @@ h3 {
 	margin: 1vw;
 	margin-left: 0.6vw;
 }
-
+.slider {
+/*   -webkit-appearance: none; */
+  width: 20%;
+  height: 25px;
+  background: #0F9D58;
+/*   outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s; */
+}
 header > a {
 	margin-top: 3vw;
 	margin-right: 3vw;
@@ -93,12 +135,15 @@ p, legend {
 }
 
 main {
-	max-width: 800px;
+/*     position: absolute; */
+  
+	max-width: 600px;
 	margin: auto;
-	margin-top: 2em;
+	margin-top: 3em;
+     right: 150em;
 	padding: 2em;
 	box-sizing: border-box;
-	background-color: lightgray;
+	background-color: #FFF1E2;
 }
 
 article {
@@ -114,6 +159,7 @@ aside {
 }
 
 main a {
+    
 	color: black;
 	text-decoration: underline;
 }
@@ -180,9 +226,9 @@ input:focus {
 } */
 
 input[type="submit"], .button, header > a, body > a, .custom-file-upload {
-  background-color: grey;
-  border: 2px solid grey;
-  color: white;
+  background-color: #FFF1E2;
+  border: 2px solid #FFF1E2;
+  color: #4285F4;
 	padding: 0.4vw 0.8vw;
   text-align: center;
   text-decoration: none;

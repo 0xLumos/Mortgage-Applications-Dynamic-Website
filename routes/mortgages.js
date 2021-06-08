@@ -25,5 +25,10 @@ router.get('/add', async ctx => {
     console.log(ctx.hbs)
 	await ctx.render('add', ctx.hbs)
 })
+router.get('/add', async ctx => {
+	
+    console.log(ctx.hbs)
+	await ctx.render('add', ctx.hbs)
+})
 
 export default router

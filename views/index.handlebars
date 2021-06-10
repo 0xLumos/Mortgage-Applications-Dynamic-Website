@@ -10,20 +10,13 @@
 		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
 		<script type="module" src="{{host}}/main.js"></script>
 	</head>
-    <script>
-    function calculate() {
-        var amount = document.getElementById("amount").value;
-        var months = document.getElementById("months").value;
-        var payment = ((amount / months) + (3/100));
-        document.getElementById("res").innerHTML = payment;
-}
-    </script>
+    
+    
 	<body>
 		<header>
 			<h1>Home</h1>
 			{{#if authorised}}
 				<a href="/logout">Log out</a>
-            <a href="/secure">secure page</a>
                 <a href = "/secure/add">Add</a>
                 
 			{{else}}
@@ -67,9 +60,35 @@
         <div class = "centre">
                 
         </div>
-		{{#if authorised}}
-			
-		{{/if}}
+<div>
+    {{#each records}}
+    
+        <div class="row">
+  <div class="column" style="background-color:#4285F4;">
+    <h2>Mortgage ID</h2>
+    <p>{{this.mortgage_id}}</p>
+  </div>
+  <div class="column" style="background-color:#4285F4;">
+    <h2>Amount</h2>
+    <p>{{this.amount}}</p>
+  </div>
+  <div class="column" style="background-color:#4285F4;">
+    <h2>Deposit</h2>
+    <p>{{this.deposit}}</p>
+  </div>
+  <div class="column" style="background-color:#4285F4;">
+    <h2>Years</h2>
+    <p>{{this.years}}</p>
+      
+  </div>
+            <div class="column" style="background-color:#4285F4;">
+    <h2>Monthly payment</h2>
+    <p>{{this.mortgage_id}}</p>
+  </div>
+            <hr>
+</div>
+    {{/each}}
+        </div>			
 	</main>
 	</body>
 </html>

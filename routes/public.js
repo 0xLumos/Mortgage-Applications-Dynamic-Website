@@ -4,6 +4,7 @@ import Router from 'koa-router'
 const router = new Router()
 
 import Accounts from '../modules/accounts.js'
+import Mortgages from '../modules/mortgages.js'
 const dbName = 'website.db'
 
 /**
@@ -13,10 +14,15 @@ const dbName = 'website.db'
  * @route {GET} /
  */
 router.get('/', async ctx => {
+	const mortgage = await new Mortgages(dbName)
 	try {
-		await ctx.render('index', ctx.hbs)
+		ctx.hbs.records = await mortgage.all()
+		console.log(JSON.stringify(ctx.hbs, null, 2)) // what is the output of this line?
+		await ctx.render('index', ctx.hbs) // the second parameter is the object being passed to the template.
 	} catch(err) {
-		await ctx.render('error', ctx.hbs)
+        ctx.hbs.error = err.message
+		console.log(ctx.hbs.error)
+        await ctx.render('error', ctx.hbs)
 	}
 })
 

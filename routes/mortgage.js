@@ -6,13 +6,16 @@ const dbName = 'website.db'
 
 
 router.get('/', async ctx => {
+    const mortgage = await new Mortgages(dbName)
 	try {
-		await ctx.render('secure', ctx.hbs)
+		await ctx.render('index', ctx.hbs) // the second parameter is the object being passed to the template.
 	} catch(err) {
-		ctx.hbs.error = err.message
-		await ctx.render('error', ctx.hbs)
+        ctx.hbs.error = err.message
+		console.log(ctx.hbs.error)
+        await ctx.render('error', ctx.hbs)
 	}
 })
+
 router.get('/add', async ctx => {
 	
     console.log(ctx.hbs)

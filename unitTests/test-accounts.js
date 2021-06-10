@@ -88,7 +88,7 @@ test('LOGIN    : valid username and password', async test => {
 	const account = await new Accounts()
 	try {
 		await account.testSetup()
-		const login = await account.login('bloggsj', 'p455w0rd')
+		const login = await account.login('admin', 'p455w0rd')
 		test.is(login, true, 'unable to log in')
 	} catch(err) {
 		test.fail('error thrown')

@@ -38,7 +38,7 @@
                 
             <p>
 				<label for="amount">Deposit to make : </label><br />
-				<input id = "range" class = "slider"type="range" name="amount" min = "5" max = "300" placeholder="preferred amount" value="{{body.deposit}}" autofocus><p class = "sliderval">Deposit: £ <span id="val"> </span>
+				<input id = "range" class = "slider"type="range" name="deposit" min = "5" max = "300" placeholder="preferred amount" value="{{body.deposit}}" autofocus><p class = "sliderval">Deposit: £ <span id="val"> </span>
 			
                   </p>
                 </div>
@@ -46,7 +46,7 @@
                 
             <p>
 				<label for="amount">Number of years : </label><br />
-				<input id = "myRange" class = "slider"type="range" name="amount" min = "5" max = "30" placeholder="preferred amount" value="{{body.years}}" autofocus><p class = "sliderval">Years : <span id="val"> </span>
+				<input id = "myRange" class = "slider"type="range" name="years" min = "5" max = "30" placeholder="preferred amount" value="{{body.years}}" autofocus><p class = "sliderval">Years : <span id="val"> </span>
                   </p>
                 </div>
                 <input type="hidden" name="referrer" value="{{referrer}}">

@@ -39,12 +39,9 @@ class Mortgages {
 	 * @returns {Boolean} returns true if the new show has been added
 	 */
 	async all() {
-		const sql = `SELECT mortgage.* FROM mortgage `
-        const movie = await this.db.all(sql)
-        for (const index in movie){
-            if (movie[index].photo === null ) movie[index].photo = 'default.jpg'
-        }
-		return movie
+		const sql = `SELECT mortgages.* FROM mortgages `
+        const mortgage = await this.db.all(sql)
+		return mortgage
         
 	}
     async close() {

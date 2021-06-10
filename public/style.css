@@ -11,6 +11,36 @@ body {
 .slidecontainer {
   width: 100%;
 }
+* {
+  box-sizing: border-box;
+}
+.slider {
+        
+        display: block;
+        /*min and max changes size of slider?*/
+        height: 320px;
+        min-width: 260px;
+        max-width: 640px;
+        height: //specified height
+        width: //specified width
+        margin: auto;
+        margin-top: 20px;
+        position: relative;
+    } 
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 .sliderval {
     text-align: center;
     border: 2px solid #4285F4 ;
@@ -98,6 +128,8 @@ h2 {
 	font-size: 1.5vw;
 	margin: 1vw;
 	margin-left: 0.6vw;
+    color : black ;
+    text-align : center;
 }
 
 h3 {
@@ -226,7 +258,7 @@ input:focus {
 } */
 
 input[type="submit"], .button, header > a, body > a, .custom-file-upload {
-  background-color: #FFF1E2;
+  background-color: white;
   border: 2px solid #FFF1E2;
   color: #4285F4;
 	padding: 0.4vw 0.8vw;
@@ -238,8 +270,8 @@ input[type="submit"], .button, header > a, body > a, .custom-file-upload {
 }
 
 input[type="submit"]:hover, header > a:hover, .custom-file-upload:hover, .add:hover {
-  color: grey;
-  background-color: white;
+  color: #FFF1E2;
+  background-color:#4285F4 ;
 }
 
 input[type="text"], input[type="email"], input[type="password"], input[type="tel"], textarea, select {
@@ -359,6 +391,6 @@ button#add {
 }
 
 button#add:hover {
-	background-color: white;
-	color: grey;
+	background-color: blue;
+	color: blue;
 }

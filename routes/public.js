@@ -17,6 +17,7 @@ router.get('/', async ctx => {
 	const mortgage = await new Mortgages(dbName)
 	try {
 		ctx.hbs.records = await mortgage.all()
+        console.log(ctx.hbs.records.testing)
 		console.log(JSON.stringify(ctx.hbs, null, 2)) // what is the output of this line?
 		await ctx.render('index', ctx.hbs) // the second parameter is the object being passed to the template.
 	} catch(err) {
@@ -70,7 +71,7 @@ router.post('/login', async ctx => {
 		const body = ctx.request.body
 		await account.login(body.user, body.pass)
 		ctx.session.authorised = true
-		const referrer = body.referrer || '/secure'
+		const referrer = body.referrer || '/'
 		return ctx.redirect(`${referrer}?msg=you are now logged in...`)
 	} catch(err) {
 		console.log(err)

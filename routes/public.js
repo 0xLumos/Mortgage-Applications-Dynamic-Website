@@ -14,11 +14,11 @@ const dbName = 'website.db'
  * @route {GET} /
  */
 router.get('/', async ctx => {
+    const account = await new Accounts(dbName)
 	const mortgage = await new Mortgages(dbName)
 	try {
 		ctx.hbs.records = await mortgage.all()
-        console.log(ctx.hbs.records.testing)
-		console.log(JSON.stringify(ctx.hbs, null, 2)) // what is the output of this line?
+		console.log(JSON.stringify(ctx.hbs, null, 2))
 		await ctx.render('index', ctx.hbs) // the second parameter is the object being passed to the template.
 	} catch(err) {
         ctx.hbs.error = err.message
@@ -47,7 +47,21 @@ router.post('/register', async ctx => {
 	try {
 		// call the functions in the module
 		await account.register(ctx.request.body.user, ctx.request.body.pass, ctx.request.body.email)
-		ctx.redirect(`/login?msg=new user "${ctx.request.body.user}" added, you need to log in`)
+        var login = await account.login(ctx.request.body.user,ctx.request.body.pass)
+        if (login){
+            try {
+                const body = ctx.request.body
+                await account.login(body.user, body.pass)
+                ctx.session.authorised = true
+                const referrer = body.referrer || '/'
+                return ctx.redirect(`${referrer}?msg=you are now logged in...`)
+            } catch(err) {
+                console.log(err)
+                ctx.hbs.msg = err.message
+                await ctx.render('login', ctx.hbs)
+}
+        }
+		ctx.redirect(`/?msg=new user "${ctx.request.body.user}" added, you need to log in`)
 	} catch(err) {
 		console.log(err)
 		ctx.hbs.msg = err.message

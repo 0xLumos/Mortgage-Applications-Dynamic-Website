@@ -1,4 +1,3 @@
-
 <!doctype html>
 
 <html lang="en">
@@ -70,9 +69,9 @@
     {{#each records}}
     
         <div class="row">
-  <div class="column" style="background-color:#4285F4;">
+  <div class="column" style="background-color:#4285F4; width : 100px;">
     <h2>Mortgage ID</h2>
-    <p>{{this.mortgage_id}}</p>
+    <p>{{this.ci}}</p>
   </div>
   <div class="column" style="background-color:#4285F4;">
     <h2>Amount</h2>
@@ -83,13 +82,13 @@
     <p id = "ddeposit">{{this.deposit}}</p>
   </div>
   <div class="column" style="background-color:#4285F4;">
-    <h2>Years</h2>
-    <p id = "dyears">{{this.years}}</p>
+    <h2>monthly payment</h2>
+    <p id = "dyears">{{this.mp}}</p>
       
   </div>
       <div class="column" style="background-color:#4285F4;">
-    <h2>Monthly payment</h2>
-    <p id = "dres"> {{this.mp}}</p>
+    <h2>Compound interest</h2>
+    <p id = "dres"> {{this.ci}}</p>
   </div>
             <hr>
 </div>

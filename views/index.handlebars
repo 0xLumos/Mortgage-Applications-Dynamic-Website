@@ -16,6 +16,18 @@
         var payment = ((amount / months) + (3/100));
         document.getElementById("res").innerHTML = payment;
 }
+        
+    </script>
+    <script>
+    function delete_row() {
+        var elem = document.getElementById("row");
+        elem.parentNode.removeChild(elem);
+}
+    </script>
+<script>
+    var p = document.getElementById('dyears');
+    console.log(p)
+
     </script>
 	<body>
 		<header>
@@ -68,41 +80,36 @@
 <div>
     {{#each records}}
     
-        <div class="row">
-  <div class="column" style="background-color:#4285F4; width : 100px;">
-    <h2>Mortgage ID</h2>
-    <p>{{this.ci}}</p>
+        <div id = "row"class="row">
+  <div class="column" style="background-color:#4285F4;">
+    <h2>Amount (£)</h2>
+    <p>{{this.amount}}</p>
   </div>
   <div class="column" style="background-color:#4285F4;">
-    <h2>Amount</h2>
-    <p id = "damount">{{this.amount}}</p>
+    <h2>Years</h2>
+    <p id = "dyears">{{this.years}}</p>
   </div>
   <div class="column" style="background-color:#4285F4;">
-    <h2>Deposit</h2>
+    <h2>Deposit (£)</h2>
     <p id = "ddeposit">{{this.deposit}}</p>
   </div>
   <div class="column" style="background-color:#4285F4;">
-    <h2>monthly payment</h2>
-    <p id = "dyears">{{this.mp}}</p>
+    <h2>monthly payment(£)</h2>
+    <p >{{this.mp}}</p>
       
   </div>
       <div class="column" style="background-color:#4285F4;">
     <h2>Compound interest</h2>
     <p id = "dres"> {{this.ci}}</p>
+             
+              
   </div>
             <hr>
-</div>
+ <button onclick="delete_row()">Delete</button>
+    </div>
     {{/each}}
         </div>			
 	</main>
 	</body>
-<!--      <script>
-       var amount = document.getElementById("damount").value;
-       console.log(amount)
-       var deposit = document.getElementById("ddeposit").value;
-       var months = document.getElementById("dyears").value;
-       var payment_per_month = (( amount/ months) + (3/100));
-       document.getElementById("dres").innerHTML = payment_per_month;
-    </script> -->
     
 </html>

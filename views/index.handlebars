@@ -10,25 +10,12 @@
 		<script type="module" src="{{host}}/main.js"></script>
 	</head>
     <script>
-    function calculate() {
-        var amount = document.getElementById("amount").value;
-        var months = document.getElementById("months").value;
-        var payment = ((amount / months) + (3/100));
-        document.getElementById("res").innerHTML = payment;
-}
-        
-    </script>
-    <script>
     function delete_row() {
         var elem = document.getElementById("row");
-        elem.parentNode.removeChild(elem);
+        elem.remove()
 }
     </script>
-<script>
-    var p = document.getElementById('dyears');
-    console.log(p)
-
-    </script>
+  
 	<body>
 		<header>
 			<h1>Home</h1>
@@ -77,11 +64,11 @@
         <div class = "centre">
                 
         </div>
-<div>
+<div class = "row">
     {{#each records}}
     
         <div id = "row"class="row">
-  <div class="column" style="background-color:#4285F4;">
+  <div id = "amount" class="column" style="background-color:#4285F4;">
     <h2>Amount (£)</h2>
     <p>{{this.amount}}</p>
   </div>
@@ -94,7 +81,7 @@
     <p id = "ddeposit">{{this.deposit}}</p>
   </div>
   <div class="column" style="background-color:#4285F4;">
-    <h2>monthly payment(£)</h2>
+    <h2>Monthly payment(£)</h2>
     <p >{{this.mp}}</p>
       
   </div>
@@ -105,10 +92,13 @@
               
   </div>
             <hr>
- <button onclick="delete_row()">Delete</button>
+                <button class = "dltbut" onclick="delete_row()">Delete</button>
+
     </div>
     {{/each}}
-        </div>			
+    
+        </div>
+        
 	</main>
 	</body>
     

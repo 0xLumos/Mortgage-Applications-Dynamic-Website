@@ -4,8 +4,8 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Log In</title>
-		<meta name="description" content="form to add new books">
+		<title>Add</title>
+		<meta name="description" content="form to add new mortgages">
 		<meta name="author" content="Mark Tyers">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
@@ -30,7 +30,7 @@
                 
             <p>
 				<label for="amount">Amount to borrow : </label><br />
-				<input id = "range" class = "slider"type="range" name="amount" min = "50000" max = "800000" value = "0" placeholder="preferred amount" value="{{body.amount}}" autofocus><p class = "sliderval">Amount: £ <span id="val"> </span>
+				<input id = "range1" class = "slider"type="range" name="amount" min = "50000" max = "800000" value = "0" placeholder="preferred amount" value="{{body.amount}}" autofocus><p class = "sliderval">Amount: £ <span id="val1"> </span>
 			
                   </p>
                 </div>
@@ -38,15 +38,15 @@
                 
             <p>
 				<label for="amount">Deposit to make : </label><br />
-				<input id = "range" class = "slider"type="range" name="deposit" min = "5000" max = "300000" placeholder="preferred amount" value="{{body.deposit}}" autofocus><p class = "sliderval">Deposit: £ <span id="val"> </span>
+				<input id = "range2" class = "slider" type="range" name="deposit" min = "5000" max = "300000" placeholder="preferred amount" value="{{body.deposit}}" autofocus><p class = "sliderval">Deposit: £ <span id="val2"> </span>
 			
                   </p>
                 </div>
            <div>
                 
             <p>
-				<label for="amount">Number of years : </label><br />
-				<input id = "myRange" class = "slider"type="range" name="years" min = "5" max = "30" placeholder="preferred amount" value="{{body.years}}" autofocus><p class = "sliderval">Years : <span id="val"> </span>
+				<label for="years">Number of years : </label><br />
+				<input id = "range3" class = "slider" type="range" name="years" min = "5" max = "30" placeholder="preferred amount" value="{{body.years}}" autofocus><p class = "sliderval">Years : <span id="val3"> </span>
                   </p>
                 </div>
                 <input type="hidden" name="referrer" value="{{referrer}}">
@@ -55,12 +55,23 @@
 		</form>
 		</main>
         <script>
-            var slider = document.getElementById("range");
-            var result = document.getElementById("val");
-             console.log(slider)
-            result.innerHTML = slider.value;
-            slider.oninput = function() {
-                result.innerHTML = this.value;
+            var slider1 = document.getElementById("range1");
+            var slider2 = document.getElementById("range2");
+            var slider3 = document.getElementById("range3");
+            var result1 = document.getElementById("val1");
+            var result2 = document.getElementById("val2");
+            var result3 = document.getElementById("val3");
+            result1.innerHTML = slider1.value;
+            result2.innerHTML = slider2.value;
+            result3.innerHTML = slider3.value;
+            slider1.oninput = function() {
+                result1.innerHTML = this.value;
+            }
+            slider2.oninput = function() {
+                result2.innerHTML = this.value;
+            }
+             slider3.oninput = function() {
+                result3.innerHTML = this.value;
             }
         </script>
 	</body>

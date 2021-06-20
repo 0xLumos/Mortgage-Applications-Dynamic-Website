@@ -8,6 +8,12 @@ const dbName = 'website.db'
 router.get('/', async ctx => {
     const mortgage = await new Mortgages(dbName)
 	try {
+        function calculate() {
+            var amount = document.getElementById("amount").value;
+            var months = document.getElementById("months").value;
+            var payment = ((amount / months) + (3/100));
+            document.getElementById("res").innerHTML = payment;
+}
 		await ctx.render('index', ctx.hbs) 
 	} catch(err) {
         ctx.hbs.error = err.message

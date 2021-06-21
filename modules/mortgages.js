@@ -30,9 +30,6 @@ class Mortgages {
 //      CALCULATE COMPOUND INTEREST
 //        = P [(1 + i)n – 1]
         var interest_rate = 3/100
-        console.log(amount)
-        console.log(deposit)
-        console.log(years)
         var compound_interest = amount * ((1 + interest_rate)**(years * 12)-1)
         var ci_rounded = parseFloat(compound_interest.toFixed(2)); 
         console.log(ci_rounded)

@@ -38,8 +38,8 @@ class Mortgages {
         console.log(ci_rounded)
         //monthly payment
         var mp = amount * (interest_rate * (1+interest_rate)**(years * 12)) / ((1 + interest_rate)**(years*12)-1)
-        var mp2 = principal * monthlyRate / (1 - (Math.pow(1/(1 + monthlyRate),
-            years * 12)));
+//         var mp2 = principal * monthlyRate / (1 - (Math.pow(1/(1 + monthlyRate),
+//             years * 12)));
         var mp_rounded = parseFloat(mp.toFixed(2)); 
         console.log(mp_rounded)
 		sql = `INSERT INTO mortgages(amount,deposit,years,mp,ci) VALUES("${amount}", "${deposit}", "${years}" , "${mp_rounded}","${ci_rounded}")`

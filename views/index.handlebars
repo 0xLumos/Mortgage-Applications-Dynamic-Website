@@ -33,16 +33,16 @@
 			</aside>
 		{{/if}}
 	<main>
-        <body>
+        
             
     <div id="loancal">
         <div>
             
         <h2>Loan Calculator</h2>
             </div>
-       <div> <p>Loan Amount: £ <input id="amount" type="number" min="50" step = "100" max="300000" onclick="calculate()"></p>
+       <div> <p>Loan Amount: £ <input id="calamount" type="text"  ></p>
         </div>
-              <div> <p>Months to Pay: <input id="months" type="number" min="5" max="30"  step="1" onclick="calculate()"></p>
+              <div> <p>Years to Pay: <input id="calyears" type="text"   step="1" ></p>
                   <div>
                             <details>
     <summary>Note*</summary>
@@ -50,8 +50,9 @@
 </details>
                   </div>
     <div>
-        
-        <button onclick="calculate()">GO</button> <hr><p id="res"></p><hr>
+         <label htmlFor="calcBtn"></label>
+        <button id = "calculatebutton">GO</button>
+        <hr><p style = 'font : 50px;'>Monthly Payment: <span id="res" class="currency"></span></p><hr>
         
                   </div>
          <div>
@@ -60,10 +61,11 @@
         </div>
         </div>
             
-</body>
+
         <div class = "centre">
                 
         </div>
+        <h2>My Loans</h2>
 <div class = "row">
     {{#each records}}
     

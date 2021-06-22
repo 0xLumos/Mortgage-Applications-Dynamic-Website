@@ -1,14 +1,33 @@
-name: website 
-on:
-  push:
+ push:
     branches: ['*']
-    
-jobs:
-    job1:
-        name : First
+ jobs:
+    npm_install:
         runs-on: ubuntu-latest
         steps:
-            - name : Phase 1 
+            - name : install npm on linux 
               uses : actions/checkout@v2
-            - run : env  
-           
+            - run :  sudo apt install nodejs
+                
+            
+    npm_upgrade:
+        runs-on: ubuntu-latest
+        steps:
+            - name : upgrade npm on linux 
+              uses : actions/checkout@v2
+            - run :  npm install -g npm@next   
+    test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          
+      - run: npm ci
+        name: Run tests 
+      - run: npm test    
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: npm run linter  

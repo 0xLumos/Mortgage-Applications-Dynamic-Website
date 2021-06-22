@@ -3,15 +3,15 @@
 set -e # using the options command to abort script at first error
 echo
 echo "PRE-COMMIT"
-
+set +e
 Email=$(git config user.email) #get the user's email
 currentBranch="$(git rev-parse --abbrev-ref HEAD)" #get the current branch 
 echo $Email
 echo $currentBranch
-if [[Email != *"@coventry.ac.uk" || Email != *"@uni.coventry.ac.uk"]]
+if [[ $Email != *"@coventry.ac.uk" ]]
 then
     echo " REASON : Not a CovUni email "
     echo "Aborting ..."
     exit 1 
 fi
-./node_modules/.bin/eslint .
+#./node_modules/.bin/eslint .

@@ -1,10 +1,9 @@
-
 <!doctype html>
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Add</title>
+		<title>Financial Data</title>
 		<meta name="description" content="form to add new mortgages">
 		<meta name="author" content="Mark Tyers">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,10 +13,10 @@
 	</head>
 	<body>
 		<header>
-		<h1>Add a mortgage</h1>
+		<h1>Financial Data</h1>
             <a href="/logout">Log out</a>
 		<a href="/">Home page</a>
-        <a href ="/mortgage/data">Financial data</a>    
+        <a href = "/mortgage/add">Add</a>    
 		</header>
 		{{#if msg}}
  			<aside>
@@ -25,11 +24,11 @@
 			</aside>
 		{{/if}}
 		<main>
-		<form action="/mortgage/add" method="post">
+		<form action="/mortgage/data" method="post">
 			  <div>
                 
             <p>
-				<label for="amount">Amount to borrow : </label><br />
+				<label for="ami">Average monthly income :  </label><br />
 				<input id = "range1" class = "slider"type="range" name="amount" min = "50000" max = "800000" value = "0" placeholder="preferred amount" value="{{body.amount}}" autofocus><p class = "sliderval">Amount: £ <span id="val1"> </span>
 			
                   </p>
@@ -37,7 +36,7 @@
         <div>
                 
             <p>
-				<label for="amount">Deposit to make : </label><br />
+				<label for="amount">Fixed monthly outgoings excluding rent or mortgage :</label><br />
 				<input id = "range2" class = "slider" type="range" name="deposit" min = "5000" max = "300000" placeholder="preferred amount" value="{{body.deposit}}" autofocus><p class = "sliderval">Deposit: £ <span id="val2"> </span>
 			
                   </p>
@@ -45,9 +44,32 @@
            <div>
                 
             <p>
-				<label for="years">Number of years : </label><br />
+				<label for="years">Current monthly rental cost or mortgage :</label><br />
 				<input id = "range3" class = "slider" type="range" name="years" min = "5" max = "30" placeholder="preferred amount" value="{{body.years}}" autofocus><p class = "sliderval">Years : <span id="val3"> </span>
                   </p>
+                </div>
+              <div>
+                
+            <p>
+				<label for="amount">How much of their wage is currently left at the end of a typical month.</label><br />
+				<input id = "range4" class = "slider"type="range" name="amount" min = "50000" max = "800000" value = "0" placeholder="preferred amount" value="{{body.amount}}" autofocus><p class = "sliderval">Amount: £ <span id="val4"> </span>
+			
+                  </p>
+                </div>
+        <div>
+                
+            <p>
+				<label for="amount">Amount to be borrowed </label><br />
+				<input id = "range5" class = "slider" type="range" name="deposit" min = "5000" max = "300000" placeholder="preferred amount" value="{{body.deposit}}" autofocus><p class = "sliderval">Deposit: £ <span id="val5"> </span>
+			
+                  </p>
+                </div>
+           <div>
+                
+            <p>
+				<label for="years">Deposit : </label><br />
+				<input id = "range6" class = "slider" type="range" name="years" min = "5" max = "30" placeholder="preferred amount" value="{{body.years}}" autofocus><p class = "sliderval">Years : <span id="val6"> </span>
+               </p>
                 </div>
                 <input type="hidden" name="referrer" value="{{referrer}}">
 			<p><input type="submit" value="Submit"></p>
@@ -55,15 +77,26 @@
 		</form>
 		</main>
         <script>
+//             since each slider's value differs from one another 
+//             hard-coded functions for each slider (show values)
             var slider1 = document.getElementById("range1");
             var slider2 = document.getElementById("range2");
             var slider3 = document.getElementById("range3");
+            var slider4 = document.getElementById("range4");
+            var slider5 = document.getElementById("range5");
+            var slider6 = document.getElementById("range6");
             var result1 = document.getElementById("val1");
             var result2 = document.getElementById("val2");
             var result3 = document.getElementById("val3");
+            var result4 = document.getElementById("val4");
+            var result5 = document.getElementById("val5");
+            var result6 = document.getElementById("val6");
             result1.innerHTML = slider1.value;
             result2.innerHTML = slider2.value;
             result3.innerHTML = slider3.value;
+            result4.innerHTML = slider4.value;
+            result5.innerHTML = slider5.value;
+            result6.innerHTML = slider6.value;
             slider1.oninput = function() {
                 result1.innerHTML = this.value;
             }
@@ -72,6 +105,15 @@
             }
              slider3.oninput = function() {
                 result3.innerHTML = this.value;
+            }
+            slider4.oninput = function() {
+                result4.innerHTML = this.value;
+            }
+            slider5.oninput = function() {
+                result5.innerHTML = this.value;
+            }
+             slider6.oninput = function() {
+                result6.innerHTML = this.value;
             }
         </script>
 	</body>

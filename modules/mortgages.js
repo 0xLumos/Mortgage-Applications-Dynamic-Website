@@ -29,6 +29,7 @@ class Mortgages {
         // n = number of months required to repay the loan
 //      CALCULATE COMPOUND INTEREST
 //        = P [(1 + i)n – 1]
+        var depositprcnt = (deposit / amount) * 100
         var interest_rate = 3/100
         console.log(amount)
         console.log(deposit)
@@ -36,8 +37,22 @@ class Mortgages {
         var compound_interest = amount * ((1 + interest_rate)**(years * 12)-1)
         var ci_rounded = parseFloat(compound_interest.toFixed(2)); 
         console.log(ci_rounded)
+        console.log(depositprcnt)
+    if ( depositprcnt >= 5 && depositprcnt <= 9 ){
+        var interest_rate = 6 
+    }
+    else if (depositprcnt >= 10 && depositprcnt <= 20){
+        interest_rate = 4 
+    }
+    else if (depositprcnt >= 21 && depositprcnt <= 30){
+        interest_rate = 3 
+    } 
+    else {
+        interest_rate = 2.3 
+    } 
         //monthly payment
-        var mp = amount * (interest_rate * (1+interest_rate)**(years * 12)) / ((1 + interest_rate)**(years*12)-1)
+        var monthlyRate = interest_rate / 100 / 12;
+        var mp = amount * monthlyRate / (1 - (Math.pow(1 / (1 + monthlyRate), years * 12)));
 //         var mp2 = principal * monthlyRate / (1 - (Math.pow(1/(1 + monthlyRate),
 //             years * 12)));
         var mp_rounded = parseFloat(mp.toFixed(2)); 

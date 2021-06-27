@@ -8,12 +8,6 @@ const dbName = 'website.db'
 router.get('/', async ctx => {
     const mortgage = await new Mortgages(dbName)
 	try {
-        function calculate() {
-            var amount = document.getElementById("amount").value;
-            var months = document.getElementById("months").value;
-            var payment = ((amount / months) + (3/100));
-            document.getElementById("res").innerHTML = payment;
-}
 		await ctx.render('index', ctx.hbs) 
 	} catch(err) {
         ctx.hbs.error = err.message
@@ -33,7 +27,37 @@ router.post('/add', async ctx =>{
     const mortgage = await new Mortgages(dbName)
 	try {
 		const body = ctx.request.body
-		await mortgage.add(body.amount,body.deposit,body.years) 
+        let id = ctx.session.id
+        console.log(id)
+		await mortgage.add(body.amount,body.deposit,body.years,id) 
+        const referrer = '/'
+        return ctx.redirect(`${referrer}?msg=Mortgage added !`)
+        
+        
+    } catch(err) {
+        console.log(err)
+		ctx.hbs.msg = err.message
+		await ctx.render('add', ctx.hbs)
+	} 
+    finally {
+        await mortgage.close()
+    }
+})
+// redirect the user to an add mortgage form 
+router.get('/data', async ctx => {
+	
+    console.log(ctx.hbs)
+	await ctx.render('data', ctx.hbs)
+})
+// insert data of the mortgage 
+// to the database and redirect to home page
+router.post('/data', async ctx =>{
+    const mortgage = await new Mortgages(dbName)
+	try {
+		const body = ctx.request.body
+        let id = ctx.session.id
+        console.log(id)
+		await mortgage.add(body.amount,body.deposit,body.years,id) 
         const referrer = '/'
         return ctx.redirect(`${referrer}?msg=Mortgage added !`)
         

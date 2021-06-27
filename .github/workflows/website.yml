@@ -1,7 +1,6 @@
-name: website 
-on:
-  push:
+ push:
     branches: ['*']
+<<<<<<< HEAD
     
 jobs:
     job1:
@@ -22,3 +21,36 @@ jobs:
             - run : npm install -g npm       
               shell: bash
            
+=======
+ jobs:
+    npm_install:
+        runs-on: ubuntu-latest
+        steps:
+            - name : install npm on linux 
+              uses : actions/checkout@v2
+            - run :  sudo apt install nodejs
+                
+            
+    npm_upgrade:
+        runs-on: ubuntu-latest
+        steps:
+            - name : upgrade npm on linux 
+              uses : actions/checkout@v2
+            - run :  npm install -g npm@next   
+    test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          
+      - run: npm ci
+        name: Run tests 
+      - run: npm test    
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: npm run linter  
+>>>>>>> 84239231e52e72c632791377b9cbc8138671c5c7

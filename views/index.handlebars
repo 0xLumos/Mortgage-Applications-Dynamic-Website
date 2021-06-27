@@ -22,7 +22,7 @@
 			{{#if authorised}}
 				<a href="/logout">Log out</a>
                 <a href = "/mortgage/add">Add</a>
-                
+                <a href = "mortgage/data">Financial Data</a>
 			{{else}}
 				<a href="/login">Log in</a>
 			{{/if}}
@@ -33,25 +33,33 @@
 			</aside>
 		{{/if}}
 	<main>
-        <body>
+        
             
     <div id="loancal">
         <div>
             
         <h2>Loan Calculator</h2>
             </div>
-       <div> <p>Loan Amount: £ <input id="amount" type="number" min="50" step = "100" max="300000" onclick="calculate()"></p>
+       <div> <p>Loan Amount: £ <input id="calamount" type="text"  ></p>
         </div>
-              <div> <p>Months to Pay: <input id="months" type="number" min="5" max="30"  step="1" onclick="calculate()"></p>
+        <div> <p>Deposit : £ <input id="caldeposit" type="text"  ></p>
+        </div>
+              <div> <p>Years to Pay: <input id="calyears" type="text"   step="1" ></p>
                   <div>
                             <details>
-    <summary>Note*</summary>
-    compound interest rate = 3%.
+    <summary>Interest rate *</summary>
+                                <ul>
+                                     <li>5-9% deposit uses interest rate of 6%.</li>
+<li>10-20% deposit uses interest rate of 4%.</li>
+<li>21-30% deposit uses interest rate of 3%.</li>
+<li>31%+ deposit uses interest rate of 2.3%.</li>
+                                </ul>
 </details>
                   </div>
     <div>
-        
-        <button onclick="calculate()">GO</button> <hr><p id="res"></p><hr>
+         <label htmlFor="calcBtn"></label>
+        <button id = "calculatebutton">GO</button>
+        <hr><p style = 'font : 50px;'>Monthly Payment: <span id="res" class="currency"></span></p><hr>
         
                   </div>
          <div>
@@ -60,10 +68,11 @@
         </div>
         </div>
             
-</body>
+
         <div class = "centre">
                 
         </div>
+        <h2>My Loans</h2>
 <div class = "row">
     {{#each records}}
     
@@ -87,7 +96,7 @@
   </div>
       <div class="column" style="background-color:#4285F4;">
     <h2>Compound interest</h2>
-    <p id = "dres"> {{this.ci}}</p>
+    <p id = "dres"> {{this.total}}</p>
              
               
   </div>

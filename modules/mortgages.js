@@ -14,7 +14,7 @@ class Mortgages {
 			this.db = await sqlite.open(dbName)
 			// we need this table to store the mortgages details
 			const sql = 'CREATE TABLE IF NOT EXISTS mortgages\
-				(mortgage_id INTEGER PRIMARY KEY AUTOINCREMENT, amount INTEGER, deposit INTEGER, years INTEGER , mp INTEGER , ci INTEGER , id INTEGER);'
+				(mortgage_id INTEGER PRIMARY KEY AUTOINCREMENT, amount INTEGER, deposit INTEGER, years INTEGER , mp INTEGER , total INTEGER , id INTEGER);'
 			await this.db.run(sql)
 			return this
 		})()
@@ -34,9 +34,6 @@ class Mortgages {
         console.log(amount)
         console.log(deposit)
         console.log(years)
-        var compound_interest = amount * ((1 + interest_rate)**(years * 12)-1)
-        var ci_rounded = parseFloat(compound_interest.toFixed(2)); 
-        console.log(ci_rounded)
         console.log(depositprcnt)
     if ( depositprcnt >= 5 && depositprcnt <= 9 ){
         var interest_rate = 6 
@@ -50,6 +47,9 @@ class Mortgages {
     else {
         interest_rate = 2.3 
     } 
+        var total = amount * ((1 + interest_rate) ** years)
+        var total = parseFloat(total.toFixed(2)); 
+        console.log(depositprcnt)
         //monthly payment
         var monthlyRate = interest_rate / 100 / 12;
         var mp = amount * monthlyRate / (1 - (Math.pow(1 / (1 + monthlyRate), years * 12)));
@@ -57,7 +57,7 @@ class Mortgages {
 //             years * 12)));
         var mp_rounded = parseFloat(mp.toFixed(2)); 
         console.log(mp_rounded)
-		sql = `INSERT INTO mortgages(amount,deposit,years,mp,ci,id) VALUES("${amount}", "${deposit}", "${years}" , "${mp_rounded}","${ci_rounded}","${id}")`
+		sql = `INSERT INTO mortgages(amount,deposit,years,mp,total,id) VALUES("${amount}", "${deposit}", "${years}" , "${mp_rounded}","${total}","${id}")`
 		await this.db.run(sql)
 		return true
 	}
@@ -70,7 +70,7 @@ class Mortgages {
 	 * @returns {Boolean} returns true if the new mortgage has been added
 	 */
 	async all(id) {
-		const sql = `SELECT mortgages.* FROM mortgages WHERE id = "${id}"  `
+		const sql = `SELECT mortgages.* FROM mortgages WHERE id = "${id}" ORDER BY  amount DESC`
         const mortgage = await this.db.all(sql)
 		return mortgage
         

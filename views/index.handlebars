@@ -47,8 +47,13 @@
               <div> <p>Years to Pay: <input id="calyears" type="text"   step="1" ></p>
                   <div>
                             <details>
-    <summary>Note*</summary>
-    compound interest rate = 3%.
+    <summary>Interest rate *</summary>
+                                <ul>
+                                     <li>5-9% deposit uses interest rate of 6%.</li>
+<li>10-20% deposit uses interest rate of 4%.</li>
+<li>21-30% deposit uses interest rate of 3%.</li>
+<li>31%+ deposit uses interest rate of 2.3%.</li>
+                                </ul>
 </details>
                   </div>
     <div>
@@ -91,7 +96,7 @@
   </div>
       <div class="column" style="background-color:#4285F4;">
     <h2>Compound interest</h2>
-    <p id = "dres"> {{this.ci}}</p>
+    <p id = "dres"> {{this.total}}</p>
              
               
   </div>

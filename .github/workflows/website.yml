@@ -1,5 +1,27 @@
  push:
     branches: ['*']
+<<<<<<< HEAD
+    
+jobs:
+    job1:
+        name : Install packages
+        runs-on: ubuntu-latest
+        steps:
+            - name : install npm 
+              uses : actions/checkout@v2
+            - run : sudo apt install npm nodejs
+              shell: bash
+            
+    job2:
+        name : upgrade packages
+        runs-on: ubuntu-latest
+        steps:
+            - name :  upgrade packages to latest
+              uses : actions/checkout@v2
+            - run : npm install -g npm       
+              shell: bash
+           
+=======
  jobs:
     npm_install:
         runs-on: ubuntu-latest
@@ -31,3 +53,4 @@
         steps:
             - uses: actions/checkout@v2
             - run: npm run linter  
+>>>>>>> 84239231e52e72c632791377b9cbc8138671c5c7

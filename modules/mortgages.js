@@ -14,12 +14,12 @@ class Mortgages {
 			this.db = await sqlite.open(dbName)
 			// we need this table to store the mortgages details
 			const sql = 'CREATE TABLE IF NOT EXISTS mortgages\
-				(mortgage_id INTEGER PRIMARY KEY AUTOINCREMENT, amount INTEGER, deposit INTEGER, years INTEGER , mp INTEGER , ci INTEGER);'
+				(mortgage_id INTEGER PRIMARY KEY AUTOINCREMENT, amount INTEGER, deposit INTEGER, years INTEGER , mp INTEGER , ci INTEGER , id INTEGER);'
 			await this.db.run(sql)
 			return this
 		})()
 	}
-    async add(amount,deposit,years) {
+    async add(amount,deposit,years,id) {
         let sql = `SELECT COUNT(mortgage_id) as records FROM mortgages ;`
 // 		const data = await this.db.get(sql)
 // 		CALCAULATE MONTHLY INTEREST :
@@ -42,7 +42,7 @@ class Mortgages {
 //             years * 12)));
         var mp_rounded = parseFloat(mp.toFixed(2)); 
         console.log(mp_rounded)
-		sql = `INSERT INTO mortgages(amount,deposit,years,mp,ci) VALUES("${amount}", "${deposit}", "${years}" , "${mp_rounded}","${ci_rounded}")`
+		sql = `INSERT INTO mortgages(amount,deposit,years,mp,ci,id) VALUES("${amount}", "${deposit}", "${years}" , "${mp_rounded}","${ci_rounded}","${id}")`
 		await this.db.run(sql)
 		return true
 	}
@@ -54,8 +54,8 @@ class Mortgages {
 	 * @param {Integer} pass the period of time of the loan
 	 * @returns {Boolean} returns true if the new mortgage has been added
 	 */
-	async all() {
-		const sql = `SELECT mortgages.* FROM mortgages  `
+	async all(id) {
+		const sql = `SELECT mortgages.* FROM mortgages WHERE id = "${id}"  `
         const mortgage = await this.db.all(sql)
 		return mortgage
         

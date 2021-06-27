@@ -17,7 +17,9 @@ router.get('/', async ctx => {
     const account = await new Accounts(dbName)
 	const mortgage = await new Mortgages(dbName)
 	try {
-		ctx.hbs.records = await mortgage.all()
+        console.log("WORIKING")
+        console.log(ctx.session.id)
+		ctx.hbs.records = await mortgage.all(ctx.session.id)
 		console.log(JSON.stringify(ctx.hbs, null, 2))
 		await ctx.render('index', ctx.hbs) // the second parameter is the object being passed to the template.
 	} catch(err) {
@@ -47,11 +49,12 @@ router.post('/register', async ctx => {
 	try {
 		// call the functions in the module
 		await account.register(ctx.request.body.user, ctx.request.body.pass, ctx.request.body.email)
-        var login = await account.login(ctx.request.body.user,ctx.request.body.pass)
+        const login = await account.login(ctx.request.body.user,ctx.request.body.pass)
         if (login){
             try {
                 const body = ctx.request.body
-                await account.login(body.user, body.pass)
+                console.log("LOG IN ")
+                ctx.session.id = login
                 ctx.session.authorised = true
                 const referrer = body.referrer || '/'
                 return ctx.redirect(`${referrer}?msg=you are now logged in...`)
@@ -83,8 +86,9 @@ router.post('/login', async ctx => {
 	ctx.hbs.body = ctx.request.body
 	try {
 		const body = ctx.request.body
-		await account.login(body.user, body.pass)
+		const id = await account.login(body.user, body.pass)
 		ctx.session.authorised = true
+        ctx.session.id = id
 		const referrer = body.referrer || '/'
 		return ctx.redirect(`${referrer}?msg=you are now logged in...`)
 	} catch(err) {
@@ -98,6 +102,7 @@ router.post('/login', async ctx => {
 
 router.get('/logout', async ctx => {
 	ctx.session.authorised = null
+    ctx.session.id = null
 	ctx.redirect('/?msg=you are now logged out')
 })
 

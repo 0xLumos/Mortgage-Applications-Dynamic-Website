@@ -61,6 +61,13 @@ class Mortgages {
 		await this.db.run(sql)
 		return true
 	}
+    
+    
+    async delete (id){
+        const sql = ` DELETE FROM mortgages WHERE mortgage_id = "${id}" `
+        const dell = await this.db.all(sql)
+		return dell
+    }
 
 	/**
 	 * adds a new mortgage
@@ -70,7 +77,7 @@ class Mortgages {
 	 * @returns {Boolean} returns true if the new mortgage has been added
 	 */
 	async all(id) {
-		const sql = `SELECT mortgages.* FROM mortgages WHERE id = "${id}" ORDER BY  amount DESC`
+		const sql = `SELECT mortgages.* FROM mortgages WHERE id = "${id}" ORDER BY  years DESC`
         const mortgage = await this.db.all(sql)
 		return mortgage
         

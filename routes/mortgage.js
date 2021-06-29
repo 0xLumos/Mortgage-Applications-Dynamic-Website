@@ -43,6 +43,33 @@ router.post('/add', async ctx =>{
         await mortgage.close()
     }
 })
+router.get('/delete/:id', async ctx => {
+	ctx.hbs.id = ctx.params.id
+    console.log(ctx.hbs)
+    
+	await ctx.render('delete', ctx.hbs)
+})
+// insert data of the mortgage 
+// to the database and redirect to home page
+router.post('/delete', async ctx =>{
+    const mortgage = await new Mortgages(dbName)
+	try {
+        ctx.hbs.id = ctx.params.id
+        console.log(ctx.hbs)
+        await mortgage.delete(ctx.params.id)
+        const referrer = '/'
+        return ctx.redirect(`${referrer}?msg=Mortgage deleted !`)
+        
+        
+    } catch(err) {
+        console.log(err)
+		ctx.hbs.msg = err.message
+		await ctx.render('delete', ctx.hbs)
+	} 
+    finally {
+        await mortgage.close()
+    }
+})
 // redirect the user to an add mortgage form 
 router.get('/data', async ctx => {
 	

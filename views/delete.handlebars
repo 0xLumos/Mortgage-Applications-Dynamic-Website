@@ -1,0 +1,32 @@
+
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Delete </title>
+		<meta name="description" content="form to delete options">
+		<meta name="author" content="Mark Tyers">
+		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+		<script type="module" src="{{host}}/main.js"></script>
+	</head>
+	<body>
+		<header>
+		<h1>Delete</h1>
+		</header>
+		{{#if msg}}
+ 			<aside>
+				<p class="msg">{{msg}}</p>
+			</aside>
+		{{/if}}
+		<main>
+            <h2>Are you sure you want to delete this mortgage ?</h2>
+            <h2> MORTGAGE ID ->  {{id}}</h2>
+            
+		<form action="/mortgage/delete" method="post">
+            <input type="hidden" name="referrer" value="{{referrer}}">
+			<p><input type="submit" value="DELETE"></p>
+            </form>
+            </main>
+	</body>
+</html>

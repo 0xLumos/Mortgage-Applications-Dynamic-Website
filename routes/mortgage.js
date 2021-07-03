@@ -45,13 +45,13 @@ router.post('/add', async ctx =>{
 })
 router.get('/delete/:id', async ctx => {
 	ctx.hbs.id = ctx.params.id
-    console.log(ctx.hbs)
+    console.log(ctx.hbs.id)
     
 	await ctx.render('delete', ctx.hbs)
 })
 // insert data of the mortgage 
 // to the database and redirect to home page
-router.post('/delete', async ctx =>{
+router.post('/delete/:id', async ctx =>{
     const mortgage = await new Mortgages(dbName)
 	try {
         ctx.hbs.id = ctx.params.id

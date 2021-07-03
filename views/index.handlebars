@@ -6,6 +6,7 @@
 		<title>Home Page</title>
 		<meta name="description" content="form to add new books">
 		<meta name="author" content="Mark Tyers">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
 		<script type="module" src="{{host}}/main.js"></script>
 	</head>
@@ -20,6 +21,7 @@
 		<header>
 			<h1>Home</h1>
 			{{#if authorised}}
+            
 				<a href="/logout">Log out</a>
                 <a href = "/mortgage/add">Add</a>
                 <a href = "mortgage/data">Financial Data</a>
@@ -73,40 +75,30 @@
                 
         </div>
         <h2>My Loans</h2>
-<div class = "row">
+<table>
+    <thead>
+    <tr>
+        <th>Amount (£)</th>
+        <th>Years</th>
+        <th>Deposit (£</th>
+        <th>Monthly payment(£)</th>
+        <th>Total</th>
+        <th>Action</th>
+    </tr>
+        </thead>
+    <tbody>
     {{#each records}}
-    
-        <div id = "row"class="row">
-  <div id = "amount" class="column" style="background-color:#4285F4;">
-    <h2>Amount (£)</h2>
-    <p>{{this.amount}}</p>
-  </div>
-  <div class="column" style="background-color:#4285F4;">
-    <h2>Years</h2>
-    <p id = "dyears">{{this.years}}</p>
-  </div>
-  <div class="column" style="background-color:#4285F4;">
-    <h2>Deposit (£)</h2>
-    <p id = "ddeposit">{{this.deposit}}</p>
-  </div>
-  <div class="column" style="background-color:#4285F4;">
-    <h2>Monthly payment(£)</h2>
-    <p >{{this.mp}}</p>
-      
-  </div>
-      <div class="column" style="background-color:#4285F4;">
-    <h2>Compound interest</h2>
-    <p id = "dres"> {{this.total}}</p>
-             
-              
-  </div>
-            <a href = "/mortgage/delete/{{this.mortgage_id}}"> DEL</a>
-            <hr>
-
-    </div>
+    <tr>
+    <td>{{this.amount}}</td>
+        <td> <p id = "dyears">{{this.years}}</p></td>
+        <td><p id = "ddeposit">{{this.deposit}}</p></td>
+        <td><p >{{this.mp}}</p></td>
+        <td><p id = "dres"> {{this.total}}</p></td>
+        <td><a href = "/mortgage/delete/{{this.mortgage_id}}" style="color:red"> DEL</a></td>
+    </tr>
     {{/each}}
-    
-        </div>
+        </tbody>
+        </table>
         
 	</main>
 	</body>

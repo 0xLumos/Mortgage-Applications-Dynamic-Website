@@ -49,6 +49,9 @@
 				<input id = "range3" class = "slider" type="range" name="years" min = "5" max = "30" placeholder="preferred amount" value="{{body.years}}" autofocus><p class = "sliderval">Years : <span id="val3"> </span>
                   </p>
                 </div>
+            <div>
+                <hr><p style = 'font : 50px;'>Monthly Payment: <span id="res" class="currency"></span></p><hr>
+            </div>
                 <input type="hidden" name="referrer" value="{{referrer}}">
 			<p><input type="submit" value="Submit"></p>
             
@@ -66,12 +69,41 @@
             result3.innerHTML = slider3.value;
             slider1.oninput = function() {
                 result1.innerHTML = this.value;
+                calcres();
             }
             slider2.oninput = function() {
                 result2.innerHTML = this.value;
+                calcres();
             }
              slider3.oninput = function() {
                 result3.innerHTML = this.value;
+                calcres();
+             }
+            var calculate = function (amount,years,deposit){
+    var depositprcnt = (deposit / amount) * 100
+    console.log(depositprcnt)
+    if ( depositprcnt >= 5 && depositprcnt <= 9 ){
+        var interest_rate = 6 
+    }
+    else if (depositprcnt >= 10 && depositprcnt <= 20){
+        interest_rate = 4 
+    }
+    else if (depositprcnt >= 21 && depositprcnt <= 30){
+        interest_rate = 3 
+    } 
+    else {
+        interest_rate = 2.3 
+    } 
+    var monthlyRate = interest_rate / 100 / 12;
+    var monthly_payment = amount * monthlyRate / (1 - (Math.pow(1 / (1 + monthlyRate), years * 12)));
+    return monthly_payment ; 
+} ;
+            function calcres () {
+                var amount = slider1.value;
+                var deposit = slider2.value;
+                var years = slider3.value;
+                var monthlyPayment = calculate(amount, years,deposit);
+                document.getElementById("res").innerHTML = monthlyPayment.toFixed(3);
             }
         </script>
 	</body>

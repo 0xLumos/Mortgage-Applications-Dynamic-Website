@@ -66,6 +66,8 @@ class Mortgages {
     async delete (id){
         const sql = ` DELETE FROM mortgages WHERE mortgage_id = "${id}" `
         const dell = await this.db.all(sql)
+        console.log("xxxxx")
+        console.log(id)
 		return dell
     }
 
